@@ -34,8 +34,8 @@
             }
             console.log(cols);
             var tableInfo = {
-                id: "Covid-19-CSV",
-                alias: "covid-19-csv",
+                id: "Covid19CSV",
+                alias: "covid19csv",
                 columns: cols
             };
 
@@ -95,7 +95,7 @@ $(document).ready(function () {
     $("#submitButton").click(function () {
         datasource = "https://raw.githubusercontent.com/microsoft/Bing-COVID-19-Data/master/data/Bing-COVID19-Data.csv";
         tableau.connectionData = datasource;
-        tableau.connectionName = "Covid-19 Data";
+        tableau.connectionName = "Covid19CSV";
         tableau.submit();
 
     });
