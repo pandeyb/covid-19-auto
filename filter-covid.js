@@ -61,9 +61,9 @@ d3.csv("https://raw.githubusercontent.com/microsoft/Bing-COVID-19-Data/master/da
         }, true);
     })
 
-    var lakeTbody = document.querySelector("#dataTable");
+    var tbody = document.querySelector("#dataTable");
 
-    addDataToTbody(lakeTbody, d);
+    addDataToTbody(tbody, d);
     // //console.log(d.length, d);
     // var csvContent = convertArrayOfObjectsToCSV({
     //     data: d
