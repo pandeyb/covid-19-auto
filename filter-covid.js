@@ -54,11 +54,15 @@ d3.csv("https://raw.githubusercontent.com/microsoft/Bing-COVID-19-Data/master/da
     });
     if (d == null) return;
 
+    console.log("CSV" + d)
+
     d = 'data:text/csv;charset=utf-8,' + d;
 
     //console.log("CSV" + d);
 
     var data = encodeURI(d);
+
+    console.log("data" + data)
 
 
     var link = document.createElement("a");
