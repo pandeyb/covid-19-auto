@@ -33,7 +33,7 @@
             let csvContent = "data:text/csv;charset=utf-8,";
 
             csv.forEach(function (rowArray) {
-                let row = rowArray.join(",");
+                row = rowArray.join(",");
                 csvContent += row + "\r\n";
             });
 
