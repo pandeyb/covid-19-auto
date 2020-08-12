@@ -46,7 +46,7 @@
         };
 
         d3.csv("https://raw.githubusercontent.com/microsoft/Bing-COVID-19-Data/master/data/Bing-COVID19-Data.csv", function (e, d) {
-            csv = d.filter(function (row) {
+            var csv = d.filter(function (row) {
                 // run through all the filters, returning a boolean
                 return ['Country_Region'].reduce(function (pass, column) {
                     return pass && (
