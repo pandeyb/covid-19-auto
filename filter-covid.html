@@ -45,6 +45,10 @@
             'Country_Region': ['Australia'],
         };
 
+        d3.csv("https://raw.githubusercontent.com/microsoft/Bing-COVID-19-Data/master/data/Bing-COVID19-Data.csv").then((function (d) {
+            console.log("Columns: " + d.columns)
+        }))
+
         d3.csv("https://raw.githubusercontent.com/microsoft/Bing-COVID-19-Data/master/data/Bing-COVID19-Data.csv", function (e, d) {
             var csv = d.filter(function (row) {
                 // run through all the filters, returning a boolean
