@@ -52,15 +52,15 @@ d3.csv("https://raw.githubusercontent.com/microsoft/Bing-COVID-19-Data/master/da
     var csvContent = convertArrayOfObjectsToCSV({
         data: d
     });
-    if (d == null) return;
+    if (csvContent == null) return;
 
-    console.log("CSV" + d)
+    console.log("CSV" + csvContent)
 
-    d = 'data:text/csv;charset=utf-8,' + d;
+    if (!csvContent.match(/^data:text\/csv/i)) {
+        csvContent = 'data:text/csv;charset=utf-8,' + csvContent;
+    }
 
-    //console.log("CSV" + d);
-
-    var data = encodeURI(d);
+    var data = encodeURI(csvContent);
 
     console.log("data" + data)
 
