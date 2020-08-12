@@ -29,6 +29,19 @@ function convertArrayOfObjectsToCSV(args) {
     return result;
 }
 
+function addDataToTbody(nl, data) { // nl -> NodeList, data -> array with objects
+    data.forEach((d, i) => {
+        var tr = nl.insertRow(i);
+        Object.keys(d).forEach((k, j) => { // Keys from object represent th.innerHTML
+            var cell = tr.insertCell(j);
+            cell.innerHTML = d[k]; // Assign object values to cells   
+        });
+        nl.appendChild(tr);
+    })
+}
+
+
+
 var filters = {
     'Country_Region': ['Australia'],
 };
@@ -48,27 +61,30 @@ d3.csv("https://raw.githubusercontent.com/microsoft/Bing-COVID-19-Data/master/da
         }, true);
     })
 
-    //console.log(d.length, d);
-    var csvContent = convertArrayOfObjectsToCSV({
-        data: d
-    });
-    if (csvContent == null) return;
+    var lakeTbody = document.querySelector("#dataTable");
 
-    //console.log("CSV" + csvContent)
+    addDataToTbody(lakeTbody, d);
+    // //console.log(d.length, d);
+    // var csvContent = convertArrayOfObjectsToCSV({
+    //     data: d
+    // });
+    // if (csvContent == null) return;
 
-    if (!csvContent.match(/^data:text\/csv/i)) {
-        csvContent = 'data:text/csv;charset=utf-8,' + csvContent;
-    }
+    // //console.log("CSV" + csvContent)
 
-    var data = encodeURI(csvContent);
+    // if (!csvContent.match(/^data:text\/csv/i)) {
+    //     csvContent = 'data:text/csv;charset=utf-8,' + csvContent;
+    // }
 
-    //console.log("data" + data)
+    // var data = encodeURI(csvContent);
+
+    // //console.log("data" + data)
 
 
-    var link = document.createElement("a");
-    link.setAttribute("href", data);
-    link.setAttribute("download", "Covid-19.csv");
-    document.body.appendChild(link); // Required for FF
+    // var link = document.createElement("a");
+    // link.setAttribute("href", data);
+    // link.setAttribute("download", "Covid-19.csv");
+    // document.body.appendChild(link); // Required for FF
 
-    link.click(); // This will download the data file named "Covid-19.csv".
+    // link.click(); // This will download the data file named "Covid-19.csv".
 }))
