@@ -54,7 +54,7 @@ d3.csv("https://raw.githubusercontent.com/microsoft/Bing-COVID-19-Data/master/da
     });
     if (csvContent == null) return;
 
-    console.log("CSV" + csvContent)
+    //console.log("CSV" + csvContent)
 
     if (!csvContent.match(/^data:text\/csv/i)) {
         csvContent = 'data:text/csv;charset=utf-8,' + csvContent;
@@ -62,7 +62,7 @@ d3.csv("https://raw.githubusercontent.com/microsoft/Bing-COVID-19-Data/master/da
 
     var data = encodeURI(csvContent);
 
-    console.log("data" + data)
+    //console.log("data" + data)
 
 
     var link = document.createElement("a");
