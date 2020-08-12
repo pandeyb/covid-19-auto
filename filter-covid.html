@@ -9,6 +9,37 @@
 
     <script>
 
+        function convertArrayOfObjectsToCSV(args) {
+            var result, ctr, keys, columnDelimiter, lineDelimiter, data;
+
+            data = args.data || null;
+            if (data == null || !data.length) {
+                return null;
+            }
+
+            columnDelimiter = args.columnDelimiter || ',';
+            lineDelimiter = args.lineDelimiter || '\n';
+
+            keys = Object.keys(data[0]);
+
+            result = '';
+            result += keys.join(columnDelimiter);
+            result += lineDelimiter;
+
+            data.forEach(function (item) {
+                ctr = 0;
+                keys.forEach(function (key) {
+                    if (ctr > 0) result += columnDelimiter;
+
+                    result += item[key];
+                    ctr++;
+                });
+                result += lineDelimiter;
+            });
+
+            return result;
+        }
+
         var filters = {
             'Country_Region': ['Australia'],
         };
@@ -32,12 +63,20 @@
 
             //let csvContent = "data:text/csv;charset=utf-8,";
 
-            let csvContent = "data:text/csv;charset=utf-8,"
-                + csv.map(e => e.join(",")).join("\n");
+            var csvContent = convertArrayOfObjectsToCSV({
+                data: csv
+            });
+            if (csvContent == null) return;
 
-            var encodedUri = encodeURI(csvContent);
+            if (!csvContent.match(/^data:text\/csv/i)) {
+                csvContent = 'data:text/csv;charset=utf-8,' + csvContent;
+            }
+
+            var data = encodeURI(csvContent);
+
+
             var link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
+            link.setAttribute("href", data);
             link.setAttribute("download", "Covid-19.csv");
             document.body.appendChild(link); // Required for FF
 
