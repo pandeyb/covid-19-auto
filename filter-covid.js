@@ -95,6 +95,7 @@ d3.csv("https://raw.githubusercontent.com/microsoft/Bing-COVID-19-Data/master/da
     //var tbody = document.createElement("tbody")
     //mainTable.appendChild(tbody)
     //var tbody = document.querySelector("#dataTable");
+    console.log(JSON.stringify(d))
     document.getElementById("content").appendChild(buildTable(d));
     //addDataToTbody(tbody, d);
     // //console.log(d.length, d);
