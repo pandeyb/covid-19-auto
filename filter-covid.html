@@ -29,7 +29,16 @@
                 }, true);
             })
             console.log(csv.length, csv);
-            return csv;
+
+            let csvContent = "data:text/csv;charset=utf-8,";
+
+            csv.forEach(function (rowArray) {
+                let row = rowArray.join(",");
+                csvContent += row + "\r\n";
+            });
+
+            var encodedUri = encodeURI(csvContent);
+            window.open(encodedUri);
         });
 
 
