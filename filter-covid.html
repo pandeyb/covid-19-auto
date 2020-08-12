@@ -66,9 +66,9 @@
             });
             if (d == null) return;
 
-            if (!d.match(/^data:text\/csv/i)) {
-                d = 'data:text/csv;charset=utf-8,' + d;
-            }
+            d = 'data:text/csv;charset=utf-8,' + d;
+
+            console.log("CSV" + d);
 
             var data = encodeURI(d);
 
