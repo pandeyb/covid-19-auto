@@ -29,7 +29,9 @@ function convertArrayOfObjectsToCSV(args) {
     return result;
 }
 
-function addDataToTbody(nl, data) { // nl -> NodeList, data -> array with objects
+var nl = document.createElement('table');
+
+function addDataToTbody(data) { // nl -> NodeList, data -> array with objects
     data.forEach((d, i) => {
         var tr = nl.insertRow(i);
         Object.keys(d).forEach((k, j) => { // Keys from object represent th.innerHTML
@@ -61,9 +63,9 @@ d3.csv("https://raw.githubusercontent.com/microsoft/Bing-COVID-19-Data/master/da
         }, true);
     })
 
-    var lakeTbody = document.querySelector("#dataTable");
+    //var lakeTbody = document.querySelector("#dataTable");
 
-    addDataToTbody(lakeTbody, d);
+    addDataToTbody(nl, d);
     // //console.log(d.length, d);
     // var csvContent = convertArrayOfObjectsToCSV({
     //     data: d
