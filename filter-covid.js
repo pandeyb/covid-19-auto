@@ -29,6 +29,36 @@ function convertArrayOfObjectsToCSV(args) {
     return result;
 }
 
+
+function buildTable(data) {
+    var table = document.createElement("table");
+    var thead = document.createElement("thead");
+    var tbody = document.createElement("tbody");
+    var headRow = document.createElement("tr");
+    ["ID", "Updated", "Confirmed",
+        "ConfirmedChange", "Deaths", "DeathsChange",
+        "Recovered", "RecoveredChange", "Latitude",
+        "Longitude", "ISO2", "ISO3", "Country_Region",
+        "AdminRegion1", "AdminRegion2"].forEach(function (el) {
+            var th = document.createElement("th");
+            th.appendChild(document.createTextNode(el));
+            headRow.appendChild(th);
+        });
+    thead.appendChild(headRow);
+    table.appendChild(thead);
+    data.forEach(function (el) {
+        var tr = document.createElement("tr");
+        for (var o in el) {
+            var td = document.createElement("td");
+            td.appendChild(document.createTextNode(el[o]))
+            tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    return table;
+}
+
 function addDataToTbody(nl, data) { // nl -> NodeList, data -> array with objects
     data.forEach((d, i) => {
         var tr = nl.insertRow(i);
@@ -61,9 +91,12 @@ d3.csv("https://raw.githubusercontent.com/microsoft/Bing-COVID-19-Data/master/da
         }, true);
     })
 
-    var tbody = document.querySelector("#dataTable");
-
-    addDataToTbody(tbody, d);
+    //var mainTable = document.createElement("table")
+    //var tbody = document.createElement("tbody")
+    //mainTable.appendChild(tbody)
+    //var tbody = document.querySelector("#dataTable");
+    document.getElementById("content").appendChild(buildTable(d));
+    //addDataToTbody(tbody, d);
     // //console.log(d.length, d);
     // var csvContent = convertArrayOfObjectsToCSV({
     //     data: d
